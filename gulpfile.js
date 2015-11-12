@@ -7,14 +7,14 @@ var nodemon       = require('gulp-nodemon');
 var sass          = require('gulp-sass');
 var livereload    = require('gulp-livereload');
 
-const SASS_PATH = './public/styles/**/*.scss';
+const SASS_PATH = './app/styles/**/*.scss';
 
 gulp.task('development', function(){
   runSequence('build',  'sass', 'server', 'watch');
 });
 
 gulp.task('build', function() {
-  return gulp.src('./public/scripts/entry.js')
+  return gulp.src('./app/scripts/entry.js')
     .pipe(webpack(require('./webpack.config.js')))
     .pipe(gulp.dest('./dist/js'));
 });
@@ -40,7 +40,7 @@ gulp.task('watch', function(){
   
   livereload.listen();
 
-  gulp.watch('public/**/*').on('change', function(file) {
+  gulp.watch('app/**/*').on('change', function(file) {
     livereload.changed(file.path);
   });
 
