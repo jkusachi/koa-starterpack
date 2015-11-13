@@ -17,7 +17,7 @@ app.use(koaBody());
 
 
 /* Static Resources */
-app.use(serve(__dirname + '/app/public'));
+app.use(serve(__dirname + '/public'));
 
 /* Handlebars Layouts */
 app.use(handlebars({
