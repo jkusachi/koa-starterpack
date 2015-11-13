@@ -7,7 +7,7 @@ var nodemon       = require('gulp-nodemon');
 var sass          = require('gulp-sass');
 var livereload    = require('gulp-livereload');
 
-const SASS_PATH = './app/styles/**/*.scss';
+const SASS_PATH = './public/styles/**/*.scss';
 
 gulp.task('development', function(){
   runSequence('build',  'sass', 'server', 'watch');
