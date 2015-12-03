@@ -29,10 +29,10 @@ gulp.task('sass', function () {
 gulp.task('server', function(){
   nodemon({
     script: './server.js',
-    ext: 'js html css',
+    ext: 'js html css hbs',
     env: { 'NODE_ENV': 'development' },
     ignore: ['dist','public/*'],
-    nodeArgs: ['--harmony']
+    nodeArgs: ['--harmony', '--debug']
   });
 });
 
