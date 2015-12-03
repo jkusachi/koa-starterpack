@@ -2,19 +2,31 @@
 
 var koa         = require('koa');
 var app         = koa();
-var router      = require('koa-router')();
 var serve       = require('koa-static');
 var mount       = require('koa-mount');
 var livereload  = require('koa-livereload');
 var koaBody     = require('koa-body');
 var handlebars  = require("koa-handlebars");
 
+var prettyjson  = require('prettyjson');
+  
+var passport = require('koa-passport');
+var routes = require('./config/routes');
 
+var d = function(item){
+  console.log(prettyjson.render(item));
+}
+
+require('./auth')
+
+/* Enable live reload */
 app.use(livereload());
 
 /* Body */
 app.use(koaBody());
 
+app.use(passport.initialize());
+app.use(passport.session());
 
 /* Static Resources */
 app.use(serve(__dirname + '/public'));
@@ -27,21 +39,7 @@ app.use(handlebars({
 }))
 
 /* Routes */
-
-app.use( router.routes() );
-
-router.get('/login', function *(next){
-  yield this.render('login/index',{
-    title: 'The Login Page'
-  })
-});
-
-router.get('/logout', function *(next){
-  yield this.render('pages/content',{
-    title: 'The Logout Page',
-    body: 'This is the logout page'
-  })
-});
+app.use( routes.routes() );
 
 
 /* Distribition Files */
