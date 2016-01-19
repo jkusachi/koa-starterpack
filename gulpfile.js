@@ -1,6 +1,7 @@
 'use strict';
 
 var gulp          = require('gulp');
+var gutil         = require('gulp-util');
 var webpack       = require('gulp-webpack');
 var runSequence   = require('run-sequence');
 var nodemon       = require('gulp-nodemon');
@@ -8,6 +9,7 @@ var sass          = require('gulp-sass');
 var livereload    = require('gulp-livereload');
 
 const SASS_PATH = './public/styles/**/*.scss';
+
 
 gulp.task('development', function(){
   runSequence('build',  'sass', 'server', 'watch');
@@ -32,14 +34,15 @@ gulp.task('server', function(){
     ext: 'js html css hbs',
     env: { 'NODE_ENV': 'development' },
     ignore: ['dist','public/*'],
-    nodeArgs: ['--harmony', '--debug']
+    nodeArgs: ['--harmony']
   });
 });
 
 gulp.task('watch', function(){
-  
-  livereload.listen();
 
+  livereload.listen({
+    port: 15050
+  });
   gulp.watch('app/**/*').on('change', function(file) {
     livereload.changed(file.path);
   });
