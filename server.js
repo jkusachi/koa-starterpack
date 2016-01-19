@@ -7,11 +7,11 @@ var mount       = require('koa-mount');
 var livereload  = require('koa-livereload');
 var koaBody     = require('koa-body');
 var handlebars  = require("koa-handlebars");
-
 var prettyjson  = require('prettyjson');
-  
+
 var passport = require('koa-passport');
 var routes = require('./config/routes');
+
 
 var d = function(item){
   console.log(prettyjson.render(item));
@@ -47,6 +47,6 @@ app.use( mount('/static', serve(__dirname + '/dist')))
 
 
 //shhh.... listen
-app.listen(4040, function () {
-  console.log("HTTP server listening on", 4040);
+app.listen(5050, function () {
+  console.log("HTTP server listening on", 5050);
 });

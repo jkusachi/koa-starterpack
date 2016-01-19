@@ -1,12 +1,14 @@
 'use strict';
 
+require('dotenv').load();
+
 module.exports = {
   client: 'mysql',
   connection: {
-    host     : '127.0.0.1',
-    user     : 'your_database_user',
-    password : 'your_database_password',
-    database : 'myapp_test',
+    host     : process.env.DB_HOST,
+    database : process.env.DB_NAME,
+    user     : process.env.DB_USER,
+    password : process.env.DB_PASS,
     charset  : 'utf8'
   }
 };
