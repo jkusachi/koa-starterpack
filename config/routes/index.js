@@ -18,9 +18,16 @@ router
   })
 })
 
+
+.get('/register', function *(next){
+  yield this.render('login/register',{
+    title: 'Register Page'
+  })
+})
+
 .post('/login', passport.authenticate('local'), function *(next){
   console.log('we got a user');
-})  
+})
 
 .get('/logout', function *(next){
   yield this.render('pages/content',{

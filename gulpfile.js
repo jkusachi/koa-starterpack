@@ -8,7 +8,7 @@ var nodemon       = require('gulp-nodemon');
 var sass          = require('gulp-sass');
 var livereload    = require('gulp-livereload');
 
-const SASS_PATH = './public/styles/**/*.scss';
+var SASS_PATH = './public/styles/**/*.scss';
 
 
 gulp.task('development', function(){
@@ -24,7 +24,9 @@ gulp.task('build', function() {
 
 gulp.task('sass', function () {
   gulp.src(SASS_PATH)
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({
+      includePaths: ['./node_modules/foundation-sites/scss']
+    }).on('error', sass.logError))
     .pipe(gulp.dest('./dist/css'));
 });
 

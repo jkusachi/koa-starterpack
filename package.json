@@ -16,6 +16,7 @@
     "bookshelf": "^0.9.1",
     "co": "^4.6.0",
     "dotenv": "^1.2.0",
+    "foundation-sites": "^6.1.2",
     "gulp-util": "^3.0.7",
     "handlebars": "^4.0.4",
     "history": "^1.13.1",
