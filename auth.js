@@ -1,11 +1,14 @@
-var passport = require('koa-passport'),
-    LocalStrategy = require('passport-local').Strategy;
+'use strict';
 
-var co = require('co');
-var bcrypt = require('bcrypt');
-var User = require('./app/models/models').User;
+import passport from 'koa-passport';
 
-passport.use(new LocalStrategy(
+import {Strategy} from 'passport-local';
+
+import co from 'co';
+import bcrypt from 'bcrypt';
+import {User} from './app/models/models';
+
+passport.use(new Strategy(
   function(username, password, done) {
     co(function *(){
       console.log('lets try to match the pw');
@@ -19,6 +22,7 @@ passport.use(new LocalStrategy(
           // res == true
           console.log('res', res);
       });
-    });    
+    });
   }
 ));
+
